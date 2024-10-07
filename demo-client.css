@@ -1,0 +1,46 @@
+/*
+ * Here you can overwrite the core-value style
+ * to fit Corporate Identity
+ *
+ * this css is fetched by core-value
+ * and embedded into iframe
+ * set relative path as attribute on the loading div. (index.html)
+ */
+:root {
+    --color-primary-light: #ffaeae;
+    --color-primary-medium: #e41b13;
+    --color-primary-default: #e41b13;
+    --color-primary-dark: #a41515;
+
+    --color-secondary-light: #607080;
+    --color-secondary-default: #284060;
+    --color-secondary-dark: #000000;
+    --header-height: 60px;
+}
+
+* {
+    scrollbar-color: #dddddd white;
+}
+body::-webkit-scrollbar-track {
+    background: #999999;
+}
+
+html {
+    background: white;
+    padding: 0;
+}
+
+body {
+    font-family: Helvetica, "Times New Roman";
+}
+
+header.core-header {
+    background-color: white!important;
+}
+header.core-header .core-project-nav-link {
+    color: var(--color-secondary-dark);
+}
+header.core-header .core-project-nav-link.active {
+    color: var(--color-primary-default);
+    border-color: var(--color-primary-default);
+}

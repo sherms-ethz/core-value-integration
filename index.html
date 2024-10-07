@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Demo Client</title>
+        <link rel="stylesheet" href="core-widget.css">
+    </head>
+    <body>
+        <div
+            id="core-value-widget"
+            data-apikey="your api key"
+            data-type="project_architect"
+            data-lang="de-CH"
+            data-csspath="/demo-client.css"
+            data-entry=""
+            data-meta=""
+            data-callback="onSaveCallback"
+        ></div>
+        <script>
+            /* fetch and send dummy project as data-attribute */
+            fetch('./demo-project.json')
+                .then(res => res.json())
+                .then(data => {
+                   document.getElementById("core-value-widget")
+                      .setAttribute("data-meta", JSON.stringify(data.meta));
+                });
+            function onSaveCallback(data) {
+                if (data?.type == "on_save" && data.data) {
+                  const projectData = JSON.parse(data.data)
+                  console.log('client should save projectData now and handle success message: ', projectData);
+                }
+            }
+        </script>
+        <script type="module" src="init-core-widget.js"></script>
+    </body>
+</html>

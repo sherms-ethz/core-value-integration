@@ -1,0 +1,57 @@
+/*
+ * inits core-widget as iframe into client system
+ * - this file has to be loaded at the end of body tag
+ */
+
+const CORE_ORIGIN = "https://app.core-value.ch"
+
+document.addEventListener("DOMContentLoaded", function() {
+    const element = document.getElementById("core-value-widget");
+    const apiKey = element?.dataset?.apikey;
+    const callbackFn = element?.dataset?.callback;
+    const language = element?.dataset?.lang;
+    const requestType = element?.dataset.type;
+    const cssPath = element.dataset.csspath;
+
+    const link = CORE_ORIGIN + "?key=" + apiKey + "&lang=" + language + "&type=" + requestType + "&cssPath=" + cssPath;
+    const iframe = document.createElement('iframe');
+    iframe.setAttribute("src", link);
+    iframe.setAttribute("allow", "fullscreen");
+    element.appendChild(iframe);
+
+    window.addEventListener("message", (e) => {
+        if (e.origin === CORE_ORIGIN) {
+            switch(e.data?.type) {
+                case "init_success":
+                    if (element?.dataset.entry) {
+                        iframe.contentWindow.postMessage({
+                            "type": "inject_project",
+                            "meta": element?.dataset.meta,
+                            "project": element?.dataset.entry,
+                        }, CORE_ORIGIN);
+                    } else {
+                        iframe.contentWindow.postMessage({
+                            "type": "default_project",
+                            "meta": element?.dataset.meta,
+                        }, CORE_ORIGIN);
+                    }
+                    break;
+                case "init_fail":
+                    // return error
+                    console.log('Core-Value init failed: ', e.data);
+                    break;
+                case "on_save":
+                    if (e.data) {
+                        if (typeof window[callbackFn] === 'function') {
+                            window[callbackFn](e.data);
+                        } else {
+                            console.log('on save callback function is not set!')
+                        }
+                    }
+                    break;
+                default:
+                    break;
+            }
+        }
+    })
+});
