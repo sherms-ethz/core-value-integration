@@ -4,7 +4,6 @@
  * call loadWidget onMounted | call unloadWidget onBeforeUnmount
  */
 
-
 const CORE_ORIGIN =  "https://app.core-value.ch"
 
 let controller = new AbortController();
@@ -62,8 +61,10 @@ export const loadWidget = function (environement: string) {
             }
             break;
           case 'init_fail':
-            // todo handle error
-            console.log('Core init failed: ', e.data);
+            console.error('Core init failed: ', e.data);
+            break;
+          case 'on_error':
+            console.error('Core Error: ', e.data);
             break;
           case 'on_save':
             if (e.data) {
@@ -71,7 +72,7 @@ export const loadWidget = function (environement: string) {
                 (window as any)[callbackFn](e.data);
               }
             } else {
-              console.log('on save callback function is not set!');
+              console.error('Client Error: on save callback function is not set!');
             }
             break;
           default:

@@ -6,6 +6,7 @@
  * and embedded into iframe
  * set relative path as attribute on the loading div. (index.html)
  */
+
 :root {
     --color-primary-light: #ffaeae;
     --color-primary-medium: #e41b13;

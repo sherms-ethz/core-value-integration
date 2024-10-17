@@ -36,17 +36,19 @@ document.addEventListener("DOMContentLoaded", function() {
                         }, CORE_ORIGIN);
                     }
                     break;
-                case "init_fail":
-                    // return error
-                    console.log('Core-Value init failed: ', e.data);
+                case 'init_fail':
+                    console.error('Core init failed: ', e.data);
                     break;
-                case "on_save":
+                case 'on_error':
+                    console.error('Core Error: ', e.data);
+                    break;
+                case 'on_save':
                     if (e.data) {
-                        if (typeof window[callbackFn] === 'function') {
+                        if (callbackFn && typeof window[callbackFn] === 'function') {
                             window[callbackFn](e.data);
-                        } else {
-                            console.log('on save callback function is not set!')
                         }
+                    } else {
+                        console.error('Client Error: on save callback function is not set!');
                     }
                     break;
                 default:

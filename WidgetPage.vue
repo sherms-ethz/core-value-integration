@@ -1,12 +1,12 @@
 <template>
     <div
       id="core-value-widget"
-      data-apikey="your api key"
+      data-apikey="[your api key]"
       data-type="project_architect"
       data-lang="de-CH"
       data-csspath="/demo-client.css"
       :data-entry="projectDetails"
-      :meta-entry="projectMeta"
+      :data-meta="projectMeta"
       data-callback="onSaveProject"></div>
 </template>
 
@@ -26,21 +26,21 @@ onBeforeUnmount(() => {
   unloadWidget();
 });
 
-const projectDetails = computed(() => {
+const projectDetails = computed((): string | null => {
   /* return project if exists */
   return null;
 });
 
-const projectMeta = computed(() => {
+const projectMeta = computed((): string => {
   /* return meta data of project if exists, else use default meta-data */
   return JSON.stringify({
     canEdit: true,
     canView: true,
-    isGP: false,
+    isGp: false,
     parts: ['ARCHITECT'],
     roles: ['ARCHITECT'],
     title: "Demo Project 101",
-    userId: "2b20d807-ea49-4fbf-8149-033f009da74c",
+    userId: "2b20d807-ea49-4fbf-8149-033f009da74c", // get uuid of user
   });
 });
 
@@ -59,7 +59,7 @@ const saveProject = (data: any) => {
   iframe {
     border: none;
     width: 100%;
-    min-height: 739px;
+    min-height: 800px;
   }
 }
 </style>

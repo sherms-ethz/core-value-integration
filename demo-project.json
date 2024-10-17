@@ -3,7 +3,7 @@
     "canEdit": true,
     "canView": true,
     "roles": ["ARCHITECT"],
-    "isGP": false,
+    "isGp": false,
     "parts" : ["ARCHITECT"],
     "title": "Demo Project 101",
     "userId": "2b20d807-ea49-4fbf-8149-033f009da74c"
