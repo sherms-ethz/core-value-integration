@@ -44,7 +44,7 @@ export const loadWidget = function (environement: string) {
             if (element?.dataset.entry) {
               iframe.contentWindow?.postMessage(
                 {
-                  type: 'inject_project',
+                  type: 'inject_data',
                   entry: element?.dataset.entry,
                   meta: element?.dataset.meta,
                 },
@@ -53,7 +53,7 @@ export const loadWidget = function (environement: string) {
             } else {
               iframe.contentWindow?.postMessage(
                 {
-                  type: 'default_project',
+                  type: 'default_data',
                   meta: element?.dataset.meta,
                 },
                 CORE_ORIGIN

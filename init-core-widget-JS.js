@@ -25,13 +25,13 @@ document.addEventListener("DOMContentLoaded", function() {
                 case "init_success":
                     if (element?.dataset.entry) {
                         iframe.contentWindow.postMessage({
-                            "type": "inject_project",
+                            "type": "inject_data",
                             "meta": element?.dataset.meta,
                             "project": element?.dataset.entry,
                         }, CORE_ORIGIN);
                     } else {
                         iframe.contentWindow.postMessage({
-                            "type": "default_project",
+                            "type": "default_data",
                             "meta": element?.dataset.meta,
                         }, CORE_ORIGIN);
                     }
