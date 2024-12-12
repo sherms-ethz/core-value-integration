@@ -24,7 +24,9 @@ export const loadWidget = function (environement: string) {
     '?key=' +  apiKey +
     '&lang=' + language +
     '&type=' + requestType +
-    '&cssPath=' + cssPath;
+    '&cssPath=' + cssPath +
+    '&timestamp='+ Date.now() // prevent caching
+
   const iframe = document.createElement('iframe');
   iframe.setAttribute('src', link);
   iframe.setAttribute('allow', 'fullscreen');

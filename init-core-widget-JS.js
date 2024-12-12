@@ -13,7 +13,13 @@ document.addEventListener("DOMContentLoaded", function() {
     const requestType = element?.dataset.type;
     const cssPath = element.dataset.csspath;
 
-    const link = CORE_ORIGIN + "?key=" + apiKey + "&lang=" + language + "&type=" + requestType + "&cssPath=" + cssPath;
+    const link = CORE_ORIGIN +
+        "?key=" + apiKey +
+        "&lang=" + language +
+        "&type=" + requestType +
+        "&cssPath=" + cssPath +
+        "&timestamp=" + Date.now() // prevent caching
+
     const iframe = document.createElement('iframe');
     iframe.setAttribute("src", link);
     iframe.setAttribute("allow", "fullscreen");
