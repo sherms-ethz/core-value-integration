@@ -46,6 +46,9 @@ const projectMeta = computed((): string => {
 
 const saveProject = (data: any) => {
   console.log('client should save projectData now and handle success message: ', JSON.parse(data.data));
+  // on saveProject - projectDetails should be updated too!
+  // this is necessary if the widget needs to be reloaded
+  // example: on socket-timeout
 };
 </script>
 
