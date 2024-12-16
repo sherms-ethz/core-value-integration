@@ -1,4 +1,4 @@
-# Core-Value Widget - how to integrate it into the client system
+# Core-Value Widget - how to integrate
 
 **Project by ETH Zürich, Professur für Architektur und Bauprozess**
 
