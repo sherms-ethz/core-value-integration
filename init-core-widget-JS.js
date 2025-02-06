@@ -12,16 +12,24 @@ document.addEventListener("DOMContentLoaded", function() {
     const language = element?.dataset?.lang;
     const requestType = element?.dataset.type;
     const cssPath = element.dataset.csspath;
+    const nonce = element.dataset?.nonce;
+    const message = element.dataset?.nonce;
 
-    const link = CORE_ORIGIN +
+    let link = CORE_ORIGIN +
         "?key=" + apiKey +
         "&lang=" + language +
         "&type=" + requestType +
-        "&cssPath=" + cssPath +
-        "&timestamp=" + Date.now() // prevent caching
+        "&cssPath=" + cssPath;
+
+    if (element.dataset?.nonce && element.dataset?.nonce) {
+        /* for shared secret base authentication */
+        link += "&nonce=" + nonce + "&message=" + message;
+    } else {
+        link += "&timestamp=" + Date.now(); // prevent caching
+    }
 
     const iframe = document.createElement('iframe');
-    iframe.setAttribute("src", link);
+    iframe.setAttribute("src", link); // prevent caching
     iframe.setAttribute("allow", "fullscreen");
     element.appendChild(iframe);
 

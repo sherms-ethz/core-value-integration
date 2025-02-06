@@ -46,10 +46,35 @@ The core-value won't change this object.
 - canView: true | false // if false the project is not visible at all! | if true summary is visible
 - isGP: true | false  // for Design Contractor - not in use yet
 - roles: ['ARHCITECT'] // if role is set user can edit setup and service part - only ARCHITECT yet
-- parts: ['ARHCITECT']// defines which parts are available (setup & service) - only ARCHITECT yet
+- parts: ['ARHCITECT'] // defines which parts are available (setup & service) - only ARCHITECT yet
 - title: 'Project Title' // project title
 - userId: 'de000000-0000-0000-0000-000000000000' // uuid of current user - for statistical purposes
 
+## Widget Authentication with Shared Secret-Based Authentication
+
+To secure your widget using shared secret-based authentication, you need to send a **nonce** and 
+a **HMAC message** (Hash-based Message Authentication Code).
+
+Contact us to enable this authentication, and share your secret with us.
+
+#### Steps to implement Shared Secret-Based Authentication
+
+- Create a nonce and add it to the div #core-value-widget using the data-nonce attribute.
+```js
+const createNonce = function() {
+    const nonce = crypto.randomBytes(16).toString('hex');
+    const now = Math.floor(Date.now() / 1000); // Timestamp in seconds !
+    return `${nonce}:${now}`;
+}
+```
+- Create the HMAC Message: The HMAC message is generated using your API key, the nonce, and the shared secret. 
+Add it to the div #core-value-widget using the data-message attribute.
+```js
+const sharedSecret = process.env.YOUR_SHARED_SECRET; // Ensure this is securely stored
+const apiKey = process.env.YOUR_API_KEY; // Your API key
+const message = apiKey + nonce; // Nonce generated in the previous step
+const token = crypto.createHmac('sha256', sharedSecret).update(message).digest('hex');
+```
 
 
 
