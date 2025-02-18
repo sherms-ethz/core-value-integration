@@ -4,6 +4,9 @@
  * call loadWidget onMounted | call unloadWidget onBeforeUnmount
  */
 
+/* uncomment and install for shared secret based authentication  */
+// import CryptoJS from 'crypto-js';
+
 const CORE_ORIGIN =  "https://app.core-value.ch"
 
 let controller = new AbortController();
@@ -97,3 +100,19 @@ export const loadWidget = function (environement: string) {
 export const unloadWidget = function () {
   controller.abort();
 };
+
+/* uncomment for shared secret based authentication */
+// export const createNonce = function() {
+//   if (!CryptoJS) {
+//     return '';
+//   }
+//   const nonce = CryptoJS.lib.WordArray.random(16).toString(CryptoJS.enc.Hex);
+//   const now = Math.floor(Date.now() / 1000); // Timestamp in seconds !
+//   return `${nonce}:${now}`;
+// }
+
+/* uncomment for shared secret based authentication */
+// export const hashMessage = async function(nonce: string, apiKey: string, sharedSecret: string) {
+//   const message = apiKey + nonce;
+//   return CryptoJS.HmacSHA256(message, sharedSecret).toString(CryptoJS.enc.Hex);
+// }

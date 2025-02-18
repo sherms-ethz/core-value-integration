@@ -13,7 +13,7 @@ document.addEventListener("DOMContentLoaded", function() {
     const requestType = element?.dataset.type;
     const cssPath = element.dataset.csspath;
     const nonce = element.dataset?.nonce;
-    const message = element.dataset?.nonce;
+    const message = element.dataset?.message;
 
     let link = CORE_ORIGIN +
         "?key=" + apiKey +
@@ -21,7 +21,7 @@ document.addEventListener("DOMContentLoaded", function() {
         "&type=" + requestType +
         "&cssPath=" + cssPath;
 
-    if (element.dataset?.nonce && element.dataset?.nonce) {
+    if (nonce && message) {
         /* for shared secret base authentication */
         link += "&nonce=" + nonce + "&message=" + message;
     } else {
