@@ -3,9 +3,7 @@
 **Project by ETH Zürich, Professur für Architektur und Bauprozess**
 
 This repository holds basic examples on how to embed the core-value as a widget/iframe into a client system.
-You need an API-Key from core-value. Please contact us if you do not have one yet.
-
-[value-app@ethz.ch](mailto:value-app.ethz.ch)
+An API-Key from core-value is required.
 
 ## How to embed the core-value widget into a client system
 
